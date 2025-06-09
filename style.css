@@ -1,0 +1,455 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(145deg, #2c3e50, #3498db);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator-container {
+    perspective: 1000px;
+}
+
+.calculator {
+    background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+    border: 3px solid #444;
+    border-radius: 12px;
+    padding: 15px;
+    width: 380px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: slideIn 0.6s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) rotateX(10deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+/* Brand section */
+.brand-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px 8px;
+}
+
+.brand-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #c0c0c0;
+    letter-spacing: 3px;
+}
+
+.model-name {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.solar-panel {
+    width: 50px;
+    height: 10px;
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    border: 1px solid #333;
+    border-radius: 2px;
+    position: relative;
+}
+
+.solar-panel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255,255,255,0.1) 15%, 
+        transparent 30%,
+        rgba(255,255,255,0.1) 45%,
+        transparent 60%,
+        rgba(255,255,255,0.1) 75%,
+        transparent 90%);
+}
+
+/* Display section */
+.display-container {
+    margin-bottom: 15px;
+}
+
+.display-frame {
+    background: #1a1a1a;
+    border: 2px inset #444;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+.lcd-screen {
+    background: #3a4a3a;
+    border: 1px solid #2a3a2a;
+    border-radius: 2px;
+    padding: 12px 8px;
+    position: relative;
+    min-height: 70px;
+}
+
+.lcd-screen::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(255,255,255,0.05) 0%, 
+        transparent 50%, 
+        rgba(0,0,0,0.1) 100%);
+    pointer-events: none;
+}
+
+.previous-operation {
+    color: #888;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    min-height: 16px;
+    text-align: right;
+    margin-bottom: 4px;
+}
+
+.display {
+    color: #000;
+    background: rgba(200, 255, 200, 0.9);
+    font-size: 18px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    text-align: right;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 4px 6px;
+    border-radius: 1px;
+    border: 1px solid #2a4a2a;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+    position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.display-indicators {
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    display: flex;
+    gap: 8px;
+}
+
+.indicator {
+    font-size: 8px;
+    color: #444;
+    font-weight: bold;
+}
+
+.indicator.active {
+    color: #000;
+}
+
+/* Scientific function rows */
+.sci-functions {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3px;
+    margin-bottom: 5px;
+}
+
+.btn-sci {
+    height: 28px;
+    font-size: 9px;
+    background: linear-gradient(145deg, #4a4a4a, #3a3a3a);
+    color: #ddd;
+    border: 1px outset #555;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    font-weight: bold;
+}
+
+.btn-sci:hover {
+    background: linear-gradient(145deg, #5a5a5a, #4a4a4a);
+}
+
+.btn-sci:active {
+    border: 1px inset #555;
+    transform: translateY(1px);
+    background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+}
+
+.btn-sci.shift-active {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+}
+
+/* Button grid */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.btn {
+    height: 38px;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    position: relative;
+    font-family: Arial, sans-serif;
+    border: 1px outset #666;
+}
+
+.btn:active {
+    border: 1px inset #666;
+    transform: translateY(1px);
+}
+
+/* Number buttons */
+.btn-number {
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.btn-number:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d8d8d8);
+}
+
+.btn-number:active {
+    background: linear-gradient(145deg, #d0d0d0, #c0c0c0);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Operator buttons */
+.btn-operator {
+    background: linear-gradient(145deg, #ff6b35, #e55a2b);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.btn-operator:hover {
+    background: linear-gradient(145deg, #ff7a45, #f06a3b);
+}
+
+.btn-operator:active {
+    background: linear-gradient(145deg, #e55a2b, #d54a1b);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Function buttons */
+.btn-function {
+    background: linear-gradient(145deg, #666, #555);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 12px;
+}
+
+.btn-function:hover {
+    background: linear-gradient(145deg, #777, #666);
+}
+
+.btn-function:active {
+    background: linear-gradient(145deg, #555, #444);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Equals button */
+.btn-equals {
+    background: linear-gradient(145deg, #3498db, #2980b9);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.btn-equals:hover {
+    background: linear-gradient(145deg, #5dade2, #3498db);
+}
+
+.btn-equals:active {
+    background: linear-gradient(145deg, #2980b9, #21618c);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Decimal button */
+.btn-decimal {
+    background: linear-gradient(145deg, #e8e8e8, #d0d0d0);
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    font-size: 20px;
+}
+
+.btn-decimal:hover {
+    background: linear-gradient(145deg, #f0f0f0, #d8d8d8);
+}
+
+.btn-decimal:active {
+    background: linear-gradient(145deg, #d0d0d0, #c0c0c0);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Zero button */
+.btn-zero {
+    grid-column: span 2;
+}
+
+/* Parentheses row */
+.paren-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.btn-paren {
+    height: 32px;
+    font-size: 16px;
+    background: linear-gradient(145deg, #888, #777);
+    color: white;
+    border: 1px outset #999;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    font-weight: bold;
+}
+
+.btn-paren:hover {
+    background: linear-gradient(145deg, #999, #888);
+}
+
+.btn-paren:active {
+    border: 1px inset #999;
+    transform: translateY(1px);
+    background: linear-gradient(145deg, #777, #666);
+}
+
+/* Bottom section */
+.bottom-section {
+    margin-top: 8px;
+    text-align: center;
+}
+
+.casio-logo {
+    font-size: 7px;
+    color: #666;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Error state */
+.display.error {
+    background: rgba(255, 200, 200, 0.9);
+    color: #cc0000;
+    animation: errorFlash 0.5s ease-in-out;
+}
+
+@keyframes errorFlash {
+    0%, 100% {
+        background: rgba(255, 200, 200, 0.9);
+    }
+    50% {
+        background: rgba(255, 150, 150, 0.9);
+    }
+}
+
+/* Calculation animation */
+.display.calculating {
+    animation: lcdFlicker 0.3s ease-in-out;
+}
+
+@keyframes lcdFlicker {
+    0%, 100% {
+        background: rgba(200, 255, 200, 0.9);
+    }
+    50% {
+        background: rgba(180, 235, 180, 0.9);
+    }
+}
+
+/* Button press animation */
+.btn.pressed {
+    animation: buttonPress 0.1s ease-out;
+}
+
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 420px) {
+    .calculator {
+        width: 350px;
+        padding: 12px;
+    }
+    
+    .sci-functions {
+        gap: 2px;
+    }
+    
+    .btn-sci {
+        height: 25px;
+        font-size: 8px;
+    }
+    
+    .btn {
+        height: 35px;
+        font-size: 13px;
+    }
+    
+    .display {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .calculator {
+        width: 320px;
+        padding: 10px;
+    }
+    
+    .btn-sci {
+        height: 22px;
+        font-size: 7px;
+    }
+    
+    .btn {
+        height: 32px;
+        font-size: 12px;
+    }
+}

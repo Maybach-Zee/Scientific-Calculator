@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASIO Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <!-- Brand and model -->
+            <div class="brand-section">
+                <div class="brand-name">CASIO</div>
+                <div class="model-name">fx-991EX PLUS</div>
+                <div class="solar-panel"></div>
+            </div>
+            
+            <!-- Display section -->
+            <div class="display-container">
+                <div class="display-frame">
+                    <div class="lcd-screen">
+                        <div class="previous-operation" id="previousOperation"></div>
+                        <div class="display" id="display">0</div>
+                        <div class="display-indicators">
+                            <span class="indicator" id="angleMode">DEG</span>
+                            <span class="indicator" id="memoryIndicator">M</span>
+                            <span class="indicator" id="errorIndicator">E</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scientific Functions Row -->
+            <div class="sci-functions">
+                <button class="btn btn-sci" onclick="toggleShift()" id="shiftBtn">SHIFT</button>
+                <button class="btn btn-sci" onclick="toggleAngleMode()">MODE</button>
+                <button class="btn btn-sci" onclick="inputFunction('sin')">sin</button>
+                <button class="btn btn-sci" onclick="inputFunction('cos')">cos</button>
+                <button class="btn btn-sci" onclick="inputFunction('tan')">tan</button>
+                <button class="btn btn-sci" onclick="inputFunction('log')">log</button>
+            </div>
+            
+            <!-- Second Row Scientific Functions -->
+            <div class="sci-functions">
+                <button class="btn btn-sci" onclick="inputFunction('asin')">sin⁻¹</button>
+                <button class="btn btn-sci" onclick="inputFunction('acos')">cos⁻¹</button>
+                <button class="btn btn-sci" onclick="inputFunction('atan')">tan⁻¹</button>
+                <button class="btn btn-sci" onclick="inputFunction('ln')">ln</button>
+                <button class="btn btn-sci" onclick="inputFunction('exp')">eˣ</button>
+                <button class="btn btn-sci" onclick="inputFunction('pow10')">10ˣ</button>
+            </div>
+            
+            <!-- Third Row Scientific Functions -->
+            <div class="sci-functions">
+                <button class="btn btn-sci" onclick="inputFunction('sqrt')">√</button>
+                <button class="btn btn-sci" onclick="inputFunction('cbrt')">∛</button>
+                <button class="btn btn-sci" onclick="inputFunction('square')">x²</button>
+                <button class="btn btn-sci" onclick="inputFunction('cube')">x³</button>
+                <button class="btn btn-sci" onclick="inputFunction('power')">xʸ</button>
+                <button class="btn btn-sci" onclick="inputFunction('factorial')">x!</button>
+            </div>
+            
+            <!-- Fourth Row - Constants and Memory -->
+            <div class="sci-functions">
+                <button class="btn btn-sci" onclick="inputConstant('pi')">π</button>
+                <button class="btn btn-sci" onclick="inputConstant('e')">e</button>
+                <button class="btn btn-sci" onclick="memoryStore()">MS</button>
+                <button class="btn btn-sci" onclick="memoryRecall()">MR</button>
+                <button class="btn btn-sci" onclick="memoryAdd()">M+</button>
+                <button class="btn btn-sci" onclick="memoryClear()">MC</button>
+            </div>
+            
+            <!-- Main Button Grid -->
+            <div class="buttons-grid">
+                <!-- Row 1 - Function buttons -->
+                <button class="btn btn-function" onclick="clearAll()">AC</button>
+                <button class="btn btn-function" onclick="clearEntry()">C</button>
+                <button class="btn btn-function" onclick="deleteLast()">⌫</button>
+                <button class="btn btn-operator" onclick="inputOperator('/')">÷</button>
+                
+                <!-- Row 2 -->
+                <button class="btn btn-number" onclick="inputNumber('7')">7</button>
+                <button class="btn btn-number" onclick="inputNumber('8')">8</button>
+                <button class="btn btn-number" onclick="inputNumber('9')">9</button>
+                <button class="btn btn-operator" onclick="inputOperator('*')">X</button>
+                
+                <!-- Row 3 -->
+                <button class="btn btn-number" onclick="inputNumber('4')">4</button>
+                <button class="btn btn-number" onclick="inputNumber('5')">5</button>
+                <button class="btn btn-number" onclick="inputNumber('6')">6</button>
+                <button class="btn btn-operator" onclick="inputOperator('-')">−</button>
+                
+                <!-- Row 4 -->
+                <button class="btn btn-number" onclick="inputNumber('1')">1</button>
+                <button class="btn btn-number" onclick="inputNumber('2')">2</button>
+                <button class="btn btn-number" onclick="inputNumber('3')">3</button>
+                <button class="btn btn-operator" onclick="inputOperator('+')">+</button>
+                
+                <!-- Row 5 -->
+                <button class="btn btn-number btn-zero" onclick="inputNumber('0')">0</button>
+                <button class="btn btn-decimal" onclick="inputDecimal()">.</button>
+                <button class="btn btn-equals" onclick="calculate()">=</button>
+            </div>
+            
+            <!-- Parentheses Row -->
+            <div class="paren-row">
+                <button class="btn btn-paren" onclick="inputParenthesis('(')">(</button>
+                <button class="btn btn-paren" onclick="inputParenthesis(')')">)</button>
+                <button class="btn btn-sci" onclick="inputFunction('abs')">|x|</button>
+                <button class="btn btn-sci" onclick="inputFunction('negate')">±</button>
+            </div>
+            
+            <!-- Bottom branding -->
+            <div class="bottom-section">
+                <div class="casio-logo">CASIO COMPUTER BY MAYBACHZEE.</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
